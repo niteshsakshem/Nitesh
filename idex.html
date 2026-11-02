@@ -1,0 +1,449 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nitesh | Personal Portfolio</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #1e293b;
+}
+
+header {
+    background: linear-gradient(120deg, #172554, #2563eb);
+    color: white;
+    padding: 35px 7%;
+}
+
+header h1 { font-size: 32px; }
+header p { margin-top: 10px; color: #dbeafe; }
+
+.container {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 14px;
+    margin-bottom: 22px;
+    box-shadow: 0 4px 18px rgba(0,0,0,.05);
+}
+
+h2 {
+    margin-bottom: 18px;
+    color: #1e40af;
+}
+
+.profile {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.skill {
+    background: #eff6ff;
+    color: #1d4ed8;
+    padding: 9px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.stat {
+    background: #eff6ff;
+    padding: 22px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.stat h3 {
+    font-size: 30px;
+    color: #2563eb;
+}
+
+.stat p {
+    margin-top: 8px;
+    font-size: 13px;
+    color: #64748b;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    margin: 12px 0;
+    font-size: 15px;
+}
+
+button {
+    border: none;
+    background: #2563eb;
+    color: white;
+    padding: 11px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover { background: #1d4ed8; }
+
+.danger {
+    background: #dc2626;
+}
+
+.visitor {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid #e2e8f0;
+    gap: 10px;
+}
+
+.visitor small { color: #64748b; }
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #64748b;
+}
+
+@media(max-width:650px) {
+    .profile { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: 1fr; }
+    header h1 { font-size: 25px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Hello, I'm Nitesh Kumar 👋</h1>
+    <p>Software Engineer | .NET Developer | Problem Solver</p>
+</header>
+
+<div class="container">
+
+    <!-- ABOUT ME -->
+    <div class="card">
+        <h2>About Me</h2>
+
+        <div class="profile">
+            <div>
+                <h3>Who Am I?</h3>
+                <p style="margin-top:12px;line-height:1.8">
+                    I am a Software Engineer passionate about
+                    building scalable applications, developing
+                    backend systems, and solving real-world
+                    technical problems.
+                </p>
+            </div>
+
+            <div>
+                <h3>My Career Goals</h3>
+                <p style="margin-top:12px;line-height:1.8">
+                    My goal is to become a strong software
+                    architect, improve problem-solving skills,
+                    and build enterprise-level applications.
+                </p>
+            </div>
+        </div>
+
+        <h3 style="margin-top:25px">Technical Skills</h3>
+
+        <div class="skills">
+            <span class="skill">C#</span>
+            <span class="skill">ASP.NET Core</span>
+            <span class="skill">MVC</span>
+            <span class="skill">SQL Server</span>
+            <span class="skill">Entity Framework</span>
+            <span class="skill">JavaScript</span>
+            <span class="skill">HTML / CSS</span>
+            <span class="skill">Docker</span>
+            <span class="skill">Kubernetes</span>
+            <span class="skill">Redis</span>
+            <span class="skill">RabbitMQ</span>
+            <span class="skill">Azure DevOps</span>
+            <span class="skill">System Design</span>
+            <span class="skill">Design Patterns</span>
+        </div>
+    </div>
+
+    <!-- VISITOR DASHBOARD -->
+    <div class="card">
+        <h2>Website Visitor Dashboard 📊</h2>
+
+        <div class="stats">
+            <div class="stat">
+                <h3 id="totalVisits">0</h3>
+                <p>Total Page Visits</p>
+            </div>
+
+            <div class="stat">
+                <h3 id="uniqueVisitors">0</h3>
+                <p>Browser Visitors</p>
+            </div>
+
+            <div class="stat">
+                <h3 id="todayVisits">0</h3>
+                <p>Today's Visits</p>
+            </div>
+        </div>
+
+        <p id="welcomeMessage" style="margin-top:20px"></p>
+    </div>
+
+    <!-- VISITOR NAME -->
+    <div class="card">
+        <h2>Welcome, Visitor! 👋</h2>
+
+        <p>Would you like to introduce yourself?</p>
+
+        <input type="text"
+               id="visitorName"
+               placeholder="Enter your name">
+
+        <button onclick="saveVisitorName()">
+            Save My Name
+        </button>
+    </div>
+
+    <!-- VISITOR HISTORY -->
+    <div class="card">
+        <h2>Recent Visitor History</h2>
+
+        <div id="visitorHistory"></div>
+
+        <button class="danger"
+                onclick="clearHistory()"
+                style="margin-top:20px">
+            Clear History
+        </button>
+    </div>
+
+</div>
+
+<footer>
+    © 2026 Nitesh Kumar | Personal Portfolio
+</footer>
+
+<script>
+
+// Local Storage Keys
+const VISITS_KEY = "nitesh_total_visits";
+const HISTORY_KEY = "nitesh_visitor_history";
+const ID_KEY = "nitesh_browser_id";
+
+// Generate a browser ID
+let browserId = localStorage.getItem(ID_KEY);
+
+if (!browserId) {
+    browserId = crypto.randomUUID();
+    localStorage.setItem(ID_KEY, browserId);
+}
+
+// Get existing history
+let history = JSON.parse(
+    localStorage.getItem(HISTORY_KEY) || "[]"
+);
+
+// Count every page load as a visit
+let totalVisits =
+    Number(localStorage.getItem(VISITS_KEY) || 0) + 1;
+
+localStorage.setItem(VISITS_KEY, totalVisits);
+
+// Add current visit
+let currentVisit = {
+    id: browserId,
+    name: "Anonymous Visitor",
+    date: new Date().toISOString()
+};
+
+history.unshift(currentVisit);
+
+// Keep latest 100 visits
+history = history.slice(0, 100);
+
+localStorage.setItem(
+    HISTORY_KEY,
+    JSON.stringify(history)
+);
+
+// Save current visit index
+const currentVisitDate = currentVisit.date;
+
+// Dashboard
+function updateDashboard() {
+
+    const allVisits = JSON.parse(
+        localStorage.getItem(HISTORY_KEY) || "[]"
+    );
+
+    const total = Number(
+        localStorage.getItem(VISITS_KEY) || 0
+    );
+
+    const unique = new Set(
+        allVisits.map(v => v.id)
+    ).size;
+
+    const today = new Date().toDateString();
+
+    const todayCount = allVisits.filter(v =>
+        new Date(v.date).toDateString() === today
+    ).length;
+
+    document.getElementById("totalVisits").textContent =
+        total;
+
+    document.getElementById("uniqueVisitors").textContent =
+        unique;
+
+    document.getElementById("todayVisits").textContent =
+        todayCount;
+
+    const existingVisits = allVisits.filter(v =>
+        v.id === browserId
+    ).length;
+
+    document.getElementById("welcomeMessage").textContent =
+        existingVisits > 1
+        ? "Welcome back! You have visited this page " +
+          existingVisits + " times on this browser."
+        : "Welcome! This is your first recorded visit.";
+
+    renderHistory();
+}
+
+// Save visitor name
+function saveVisitorName() {
+
+    const name = document.getElementById(
+        "visitorName"
+    ).value.trim();
+
+    if (!name) {
+        alert("Please enter your name.");
+        return;
+    }
+
+    let allVisits = JSON.parse(
+        localStorage.getItem(HISTORY_KEY) || "[]"
+    );
+
+    const current = allVisits.find(v =>
+        v.date === currentVisitDate
+    );
+
+    if (current) {
+        current.name = name;
+    }
+
+    localStorage.setItem(
+        HISTORY_KEY,
+        JSON.stringify(allVisits)
+    );
+
+    document.getElementById("visitorName").value = "";
+
+    updateDashboard();
+
+    alert("Thank you for introducing yourself!");
+}
+
+// Display history
+function renderHistory() {
+
+    const allVisits = JSON.parse(
+        localStorage.getItem(HISTORY_KEY) || "[]"
+    );
+
+    const container = document.getElementById(
+        "visitorHistory"
+    );
+
+    container.innerHTML = "";
+
+    if (allVisits.length === 0) {
+        container.textContent = "No visitor history available.";
+        return;
+    }
+
+    allVisits.forEach(visitor => {
+
+        const row = document.createElement("div");
+        row.className = "visitor";
+
+        const details = document.createElement("div");
+
+        const name = document.createElement("strong");
+        name.textContent = visitor.name;
+
+        const date = document.createElement("br");
+
+        const time = document.createElement("small");
+        time.textContent = new Date(
+            visitor.date
+        ).toLocaleString();
+
+        details.append(name, date, time);
+
+        const label = document.createElement("small");
+        label.textContent =
+            visitor.id === browserId
+            ? "This Browser"
+            : "Other Browser";
+
+        row.append(details, label);
+        container.appendChild(row);
+    });
+}
+
+// Clear history
+function clearHistory() {
+
+    if (!confirm("Are you sure you want to clear visitor history?")) {
+        return;
+    }
+
+    localStorage.removeItem(HISTORY_KEY);
+    localStorage.removeItem(VISITS_KEY);
+
+    alert("Local visitor history cleared.");
+
+    location.reload();
+}
+
+// Initial dashboard
+updateDashboard();
+
+</script>
+
+</body>
+</html>
